@@ -9,11 +9,11 @@ public:
     ~Ball();
 
     void collideWith(Wall w);
-    void strike(double dir, double speed);
+    void strike(double dir, double velocity);
     void updateVelocity();
 
 private:
-    const double ACCELERATION = 0.8;
+    const double ACCELERATION = 0.9;
     double m_posX;
     double m_posY;
     double m_direction;
