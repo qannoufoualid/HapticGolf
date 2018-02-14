@@ -1,23 +1,21 @@
 #ifndef COURSE_H
 #define COURSE_H
 #include <vector>
-
+#include "point.h"
 
 class Course
 {
 public:
-    Course(double teePosX, double teePosY, double holePosX, double holePosY, std::vector<Wall> walls);
+    Course(Point::Point tee, Point::Point hole, std::vector<Wall> walls);
     ~Course();
 
-    double* getTee();
-    double* getHole();
+    Point getTee();
+    Point getHole();
     std::vector<Wall> getWalls();
 
 private:
-    double m_teePosX;
-    double m_teePosY;
-    double m_holePosX;
-    double m_holePosY;
+    Point m_teePos;
+    Point m_holePos;
     std::vector<Wall> m_walls;
 };
 

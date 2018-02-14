@@ -1,8 +1,7 @@
 #include "ball.h"
 
-Ball::Ball(double posX, double posY) :
-    m_posX(posX),
-    m_posY(posY),
+Ball::Ball(Point p) :
+    m_pos(p),
     m_direction(0),
     m_velocity(0)
 {
