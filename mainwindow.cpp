@@ -17,8 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-    ClickableLabel* ballLabel = new ClickableLabel();
+    ClickableLabel* ballLabel = new ClickableLabel(this);
     ballLabel->setPixmap(QPixmap(QString(":/images/ball")).scaled(30,30,Qt::KeepAspectRatio));
+    ballLabel->setGeometry(150,150,ballLabel->height(),ballLabel->width());
     ui->verticalLayout->addWidget(ballLabel);
 
     connect(ballLabel, SIGNAL(clicked()), this, SLOT(clickBall()));
