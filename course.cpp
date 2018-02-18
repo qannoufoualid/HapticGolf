@@ -8,6 +8,11 @@ Course::Course(Point tee, Point hole, std::vector<Wall> walls) :
 
 }
 
+Course::~Course()
+{
+
+}
+
 Point Course::getTee()
 {
     return m_teePos;

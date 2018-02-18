@@ -3,6 +3,7 @@
 
 #include "point.h"
 #include "wall.h"
+#include "course.h"
 
 
 class Ball
@@ -12,8 +13,10 @@ public:
     ~Ball();
 
     void collideWith(Wall w);
+    void collideWith(Point hole);
     void strike(Point dir, double velocity);
     void updateVelocity();
+    void checkCollisions(Course course);
 
 private:
     Point m_pos;
