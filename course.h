@@ -2,11 +2,12 @@
 #define COURSE_H
 #include <vector>
 #include "point.h"
+#include "wall.h"
 
 class Course
 {
 public:
-    Course(Point::Point tee, Point::Point hole, std::vector<Wall> walls);
+    Course(Point tee, Point hole, std::vector<Wall> walls);
     ~Course();
 
     Point getTee();

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="ball">ball.png</file>
+    </qresource>
+</RCC>

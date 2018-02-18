@@ -1,38 +1,45 @@
-#include "point.h"
+#include "Point.h"
 
-point::point()
+Point::Point()
 {
     m_posX = 0;
     m_posY = 0;
 }
 
-point::point(double fX, double fY)
+Point::Point(double fX, double fY)
 {
     m_posX = fX;
     m_posY = fY;
 }
 
-double point::getX()
+Point::~Point()
+{
+
+}
+
+
+
+double Point::getX()
 {
     return m_posX;
 }
 
-double point::getY()
+double Point::getY()
 {
     return m_posY;
 }
 
-void point::updateX(double newX)
+void Point::updateX(double newX)
 {
     m_posX = newX;
 }
 
-void point::updateY(double newY)
+void Point::updateY(double newY)
 {
     m_posY = newY;
 }
 
-void point::updatePos(double newX, double newY)
+void Point::updatePos(double newX, double newY)
 {
     m_posX = newX;
     m_posY = newY;

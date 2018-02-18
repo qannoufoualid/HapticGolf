@@ -2,12 +2,12 @@
 #define POINT_H
 
 
-class point
+class Point
 {
 public:
-    point();
-    point(double fX, double fY);
-    ~point();
+    Point();
+    Point(double fX, double fY);
+    ~Point();
     double getX();
     double getY();
     void updateX(double newX);

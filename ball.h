@@ -12,13 +12,13 @@ public:
     ~Ball();
 
     void collideWith(Wall w);
-    void strike(double dir, double velocity);
+    void strike(Point dir, double velocity);
     void updateVelocity();
 
 private:
     Point m_pos;
     const double ACCELERATION = 0.9;
-    double m_direction;
+    Point m_direction;
     double m_velocity;
 };
 
