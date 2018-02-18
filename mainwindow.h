@@ -2,6 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
+#include <QDebug>
+#include <vector>
+
+#include "ball.h"
+#include "course.h"
+#include "wall.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +28,8 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
+    Course* m_course;
+    Ball* m_ball;
 };
 
 #endif // MAINWINDOW_H
