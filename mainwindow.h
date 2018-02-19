@@ -24,10 +24,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
     void paintEvent(QPaintEvent *event);
 
 public slots:
-
+    QPoint	mDebut, mFin;
     void update();
 
 private:

@@ -77,3 +77,42 @@ void MainWindow::redrawCourse()
     p.setPen(Qt::NoPen);
     p.setBrush(Qt::NoBrush);
 }
+
+void MainWindow::mousePressEvent(QMouseEvent *e)
+{
+
+    if (e->buttons() == Qt::LeftButton)
+    {
+
+        if (this->mainlevee)
+        {
+            DessinerPoint(e->pos());
+
+        }
+        else if (this->elastique)
+        {
+            //tous les événements souris sont capturées par la fenêtre
+            //y compris ceux en dehors de la fenêtre
+           //this->grabMouse();
+
+           mDebut = e->pos();
+           if (!this->mZoneDebutElastique)
+               delete (this->mZoneDebutElastique);
+           this->mZoneDebutElastique = new QPixmap(*this->mZoneClient);
+        }
+
+    }
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *e)
+{
+    if (this->mainlevee)
+    {
+        delete (this->mPrec);
+        this->mPrec = NULL;
+    }
+    else if (this->elastique)
+      //   this->releaseMouse()
+        ;
+}
+
