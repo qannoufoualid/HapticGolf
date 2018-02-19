@@ -12,6 +12,7 @@
 #include "ball.h"
 #include "course.h"
 #include "wall.h"
+#include "gestionhaptique.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,10 +30,16 @@ public:
     void mouseReleaseEvent(QMouseEvent *e);
     void paintEvent(QPaintEvent *event);
 
+
+    GestionHaptique *getGestion_haptique() const;
+
+    void setGestion_haptique(GestionHaptique *value);
+
 public slots:
     void update();
 
 private:
+    GestionHaptique * gestion_haptique;
     QPoint	mDebut, mFin;
     void updateBall();
     void redrawCourse();

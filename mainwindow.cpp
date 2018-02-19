@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->m_ball = new Ball(m_course->getTee());
     // A LIBERER
 
+    gestion_haptique = new GestionHaptique(this);
+
     ui->setupUi(this);
 
     this->m_zoneDessin = new QPixmap(this->size());
@@ -54,6 +56,16 @@ void MainWindow::update()
     }
 
     qApp->processEvents(QEventLoop::AllEvents);
+}
+
+void MainWindow::setGestion_haptique(GestionHaptique *value)
+{
+    gestion_haptique = value;
+}
+
+GestionHaptique *MainWindow::getGestion_haptique() const
+{
+    return gestion_haptique;
 }
 
 void MainWindow::updateBall()
@@ -107,6 +119,7 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 
     if (e->buttons() == Qt::LeftButton)
     {
+        gestion_haptique->getRessort()->Start();
         mDebut = e->pos();
     }
 }
@@ -129,5 +142,6 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
          inverse = Point(0, 0);
 
         m_ball->strike(inverse, norme * 0.1);
+        gestion_haptique->getRessort()->Stop();
 }
 
