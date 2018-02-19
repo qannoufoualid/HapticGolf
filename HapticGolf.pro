@@ -12,18 +12,26 @@ TARGET = HapticGolf
 TEMPLATE = app
 
 
+
+INCLUDEPATH += "C:\Program Files\Immersion Corporation\IFC23\inc"
+
+LIBS += "C:\Program Files\Immersion Corporation\IFC23\lib\IFC23.lib"
+
+
 SOURCES += main.cpp\
         mainwindow.cpp \
     ball.cpp \
     wall.cpp \
     course.cpp \
-    point.cpp
+    point.cpp \
+    gestionhaptique.cpp
 
 HEADERS  += mainwindow.h \
     ball.h \
     wall.h \
     course.h \
-    point.h
+    point.h \
+    gestionhaptique.h
 
 FORMS    += mainwindow.ui
 
