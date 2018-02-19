@@ -1,4 +1,5 @@
 #include "Point.h"
+#include <cmath>
 
 Point::Point()
 {
@@ -45,3 +46,6 @@ void Point::updatePos(double newX, double newY)
     m_posY = newY;
 }
 
+double Point::distanceTo(Point p){
+    return sqrt(pow(this->getX()-p.getX(), 2)+pow(this->getY()-p.getY(), 2));
+}

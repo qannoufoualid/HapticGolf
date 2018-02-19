@@ -27,3 +27,11 @@ std::vector<Wall> Course::getWalls()
 {
     return m_walls;
 }
+
+void Course::setPlayerWon(bool won){
+    this->playerWon = won;
+}
+
+bool Course::isPlayerWon(){
+    return this->playerWon;
+}

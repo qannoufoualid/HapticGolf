@@ -13,14 +13,16 @@ public:
     Ball(Point p);
     ~Ball();
 
-    void collideWith(Wall w);
+    bool collideWith(Wall wall);
     void collideWith(Point hole);
     void strike(Point dir, double velocity);
     void updateMovement();
     void checkCollisions(Course course);
-
     Point getPos();
-
+    void changeDirection(bool isVertical);
+    bool checkIfInHole(Point hole, double diameter);
+    double getVelocity();
+    bool isStopped();
 private:
     Point m_pos;
     const double ACCELERATION = 0.99;

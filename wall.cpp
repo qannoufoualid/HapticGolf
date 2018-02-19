@@ -1,10 +1,10 @@
 #include "wall.h"
 
 
-Wall::Wall(Point firstPt, Point secondPt, bool vertical) :
+Wall::Wall(Point firstPt, Point secondPt, WallType type) :
     m_firstPt(firstPt),
     m_secondPt(secondPt),
-    m_vertical(vertical)
+    m_wallType(type)
 {
 
 }
@@ -24,7 +24,7 @@ Point Wall::getSecondPoint()
     return m_secondPt;
 }
 
-bool Wall::isVertical()
+WallType Wall::getWallType()
 {
-    return m_vertical;
+    return m_wallType;
 }

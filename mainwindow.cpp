@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMouseEvent>
+#include <QFont>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -8,14 +9,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     // Setup modèle
     std::vector<Wall> walls = {
-        Wall(Point(10,10), Point(500,10), false),
-        Wall(Point(10,10), Point(10,500), true),
-        Wall(Point(500,10), Point(500,500), false),
-        Wall(Point(10,500), Point(500,500), true)
+        Wall(Point(10,10), Point(500,10), TOP),
+        Wall(Point(10,10), Point(10,500), LEFT),
+        Wall(Point(500,10), Point(500,500), RIGHT),
+        Wall(Point(10,500), Point(500,500), BOTTOM)
     };
     this->m_course = new Course(Point(50,50), Point(250,250), walls);
     this->m_ball = new Ball(m_course->getTee());
-    this->m_ball->strike(Point(1,1), 1);
     // A LIBERER
 
     ui->setupUi(this);
@@ -45,6 +45,14 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::update()
 {
     updateBall();
+    m_ball->checkCollisions(*m_course);
+    qInfo() << m_ball->getVelocity();
+    if(m_ball->isStopped() && m_ball->checkIfInHole(m_course->getHole(), 30)){
+        m_course->setPlayerWon(true);
+    }else{
+        m_course->setPlayerWon(false);
+    }
+
     qApp->processEvents(QEventLoop::AllEvents);
 }
 
@@ -65,6 +73,7 @@ void MainWindow::redrawCourse()
     p.drawEllipse(QPoint(m_ball->getPos().getX(), m_ball->getPos().getY()), 15, 15);
     p.setBrush(Qt::NoBrush);
 
+
     p.setPen(Qt::red);
     for (int i = 0; i < m_course->getWalls().size(); i++) {
         Wall w = m_course->getWalls()[i];
@@ -73,7 +82,21 @@ void MainWindow::redrawCourse()
 
     p.setBrush(Qt::black);
     p.setPen(Qt::black);
-    p.drawEllipse(QPoint(m_course->getHole().getX(), m_course->getHole().getY()), 15, 15);
+    p.drawEllipse(QPoint(m_course->getHole().getX(), m_course->getHole().getY()), 30, 30);
+
+
+    if(m_course->isPlayerWon()){
+
+        QFont font;
+        font.setPixelSize(40);
+
+        p.setFont(font);
+
+        p.setPen(Qt::black);
+        p.setBrush(Qt::black);
+        p.drawText(QPoint(80, 80), "You Won");
+    }
+
 
     p.setPen(Qt::NoPen);
     p.setBrush(Qt::NoBrush);
@@ -106,6 +129,5 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
          inverse = Point(0, 0);
 
         m_ball->strike(inverse, norme * 0.1);
-
 }
 
