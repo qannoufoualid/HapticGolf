@@ -91,9 +91,21 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
         mFin = e->pos();
+        Point result = Point(mFin.x() - mDebut.x(), mFin.y() - mDebut.y());
+        double norme = std::sqrt(result.getX()*result.getX()+ result.getY()*result.getY());
+        Point inverse = Point(-result.getX(), -result.getY());
 
-        Point  inverse = Point::inverse(Point(mFin.x(), mFin.y()) , this->m_ball->getPos());
-        qInfo() << inverse.getX();
+        double denominator = std::abs(inverse.getX());
+        if(std::abs(inverse.getX()) < std::abs(inverse.getY())){
+            denominator = std::abs(inverse.getY());
+        }
+
+        if(denominator != 0)
+         inverse = Point(inverse.getX()/denominator, inverse.getY()/denominator);
+        else
+         inverse = Point(0, 0);
+
+        m_ball->strike(inverse, norme * 0.1);
 
 }
 
