@@ -17,15 +17,13 @@ SOURCES += main.cpp\
     ball.cpp \
     wall.cpp \
     course.cpp \
-    point.cpp \
-    clickablelabel.cpp
+    point.cpp
 
 HEADERS  += mainwindow.h \
     ball.h \
     wall.h \
     course.h \
-    point.h \
-    clickablelabel.h
+    point.h
 
 FORMS    += mainwindow.ui
 

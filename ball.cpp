@@ -31,11 +31,13 @@ void Ball::strike(Point dir, double velocity)
 {
     m_direction = dir;
     m_velocity = velocity;
+
 }
 
-void Ball::updateVelocity()
+void Ball::updateMovement()
 {
     m_velocity *= ACCELERATION;
+    m_pos.updatePos(m_pos.getX() + (m_direction.getX() * m_velocity), m_pos.getY() + (m_direction.getY() * m_velocity));
 }
 
 void Ball::checkCollisions(Course course)
@@ -51,5 +53,10 @@ void Ball::checkCollisions(Course course)
             }
         }
     }
+}
+
+Point Ball::getPos()
+{
+    return m_pos;
 }
 
