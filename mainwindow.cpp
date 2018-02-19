@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMouseEvent>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -83,36 +84,16 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 
     if (e->buttons() == Qt::LeftButton)
     {
-
-        if (this->mainlevee)
-        {
-            DessinerPoint(e->pos());
-
-        }
-        else if (this->elastique)
-        {
-            //tous les événements souris sont capturées par la fenêtre
-            //y compris ceux en dehors de la fenêtre
-           //this->grabMouse();
-
-           mDebut = e->pos();
-           if (!this->mZoneDebutElastique)
-               delete (this->mZoneDebutElastique);
-           this->mZoneDebutElastique = new QPixmap(*this->mZoneClient);
-        }
-
+        mDebut = e->pos();
     }
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
-    if (this->mainlevee)
-    {
-        delete (this->mPrec);
-        this->mPrec = NULL;
-    }
-    else if (this->elastique)
-      //   this->releaseMouse()
-        ;
+        mFin = e->pos();
+
+        Point  inverse = Point::inverse(Point(mFin.x(), mFin.y()) , this->m_ball->getPos());
+        qInfo() << inverse.getX();
+
 }
 

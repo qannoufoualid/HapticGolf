@@ -44,3 +44,4 @@ void Point::updatePos(double newX, double newY)
     m_posX = newX;
     m_posY = newY;
 }
+

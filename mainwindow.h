@@ -7,6 +7,7 @@
 #include <QPainter>
 #include <QTimer>
 #include <vector>
+#include <QPoint>
 
 #include "ball.h"
 #include "course.h"
@@ -29,11 +30,10 @@ public:
     void paintEvent(QPaintEvent *event);
 
 public slots:
-    QPoint	mDebut, mFin;
     void update();
 
 private:
-
+    QPoint	mDebut, mFin;
     void updateBall();
     void redrawCourse();
 
