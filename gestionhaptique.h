@@ -19,10 +19,16 @@ public:
 
     CImmProject *GetProjet() const;
 
+    CImmSpring* getRessort() const;
+
+
 private:
     CImmMouse *mSouris;
     CImmProject  *mProjet;
     MainWindow *mFenetre;
+
+
+    CImmSpring* mRessort;
 };
 
 #endif // GESTIONHAPTIQUE_H

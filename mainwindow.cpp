@@ -96,15 +96,13 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 
     if (e->buttons() == Qt::LeftButton)
     {
-        gestion_haptique->GetProjet()->Start("Spring");
+        gestion_haptique->getRessort()->Start();
         mDebut = e->pos();
     }
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
-    //if (e->buttons() == Qt::LeftButton)
-    //{
         mFin = e->pos();
         Point result = Point(mFin.x() - mDebut.x(), mFin.y() - mDebut.y());
         double norme = std::sqrt(result.getX()*result.getX()+ result.getY()*result.getY());
@@ -121,8 +119,7 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
          inverse = Point(0, 0);
 
         m_ball->strike(inverse, norme * 0.1);
-        gestion_haptique->GetProjet()->Stop("Spring");
-    //}
+        gestion_haptique->getRessort()->Stop();
 
 }
 
