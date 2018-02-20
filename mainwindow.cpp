@@ -10,9 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Setup modèle
     std::vector<Wall> walls = {
         Wall(Point(10,10), Point(500,10), TOP),
-        Wall(Point(10,10), Point(10,500), LEFT),
+        Wall(Point(10,10), Point(10,1000), LEFT),
         Wall(Point(500,10), Point(500,500), RIGHT),
-        Wall(Point(10,500), Point(500,500), BOTTOM)
+
     };
     this->m_course = new Course(Point(50,50), Point(250,250), walls);
     this->m_ball = new Ball(m_course->getTee());
