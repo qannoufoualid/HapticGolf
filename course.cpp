@@ -1,5 +1,8 @@
 #include "course.h"
 
+
+ static const int TROU_RAYON=30;
+
 Course::Course(Point tee, Point hole, std::vector<Wall> walls) :
     m_teePos(tee),
     m_holePos(hole),

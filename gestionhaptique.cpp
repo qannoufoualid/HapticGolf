@@ -37,7 +37,7 @@
                                   false));
 
             mProjet = new CImmProject();
-            if (mProjet->OpenFile("C:/Users/M2IHM/Desktop/XYSpring.ifr", mSouris))
+            if (mProjet->OpenFile("C:/Users/M2IHM/Desktop/Immersion.ifr", mSouris))
            {//le chemin par d�faut est celui o� se trouve la g�n�ration : xxx-build-desktop/
                 qDebug()<<"Projet ifr charg�";
             }

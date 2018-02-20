@@ -10,9 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Setup modèle
     std::vector<Wall> walls = {
         Wall(Point(10,10), Point(500,10), TOP),
-        Wall(Point(10,10), Point(10,1000), LEFT),
+        Wall(Point(10,10), Point(10,500), LEFT),
         Wall(Point(500,10), Point(500,500), RIGHT),
-
+        Wall(Point(10,500), Point(500,500), BOTTOM)
     };
     this->m_course = new Course(Point(50,50), Point(250,250), walls);
     this->m_ball = new Ball(m_course->getTee());
@@ -47,8 +47,9 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::update()
 {
     updateBall();
-    m_ball->checkCollisions(*m_course);
-    qInfo() << m_ball->getVelocity();
+    if(m_ball->checkCollisions(*m_course)){
+        gestion_haptique->GetProjet()->Start("Periodic");
+    }
     if(m_ball->isStopped() && m_ball->checkIfInHole(m_course->getHole(), 30)){
         m_course->setPlayerWon(true);
     }else{
@@ -119,29 +120,38 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 
     if (e->buttons() == Qt::LeftButton)
     {
-        gestion_haptique->getRessort()->Start();
-        mDebut = e->pos();
+        if(Point(e->pos().x(), e->pos().y()).distanceTo(m_ball->getPos()) < 15 ){
+            clicked = true;
+            gestion_haptique->getRessort()->Start();
+            mDebut = e->pos();
+        }
     }
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
-        mFin = e->pos();
-        Point result = Point(mFin.x() - mDebut.x(), mFin.y() - mDebut.y());
-        double norme = std::sqrt(result.getX()*result.getX()+ result.getY()*result.getY());
-        Point inverse = Point(-result.getX(), -result.getY());
+      if(clicked == true){
+          mFin = e->pos();
+          Point result = Point(mFin.x() - mDebut.x(), mFin.y() - mDebut.y());
+          double norme = std::sqrt(result.getX()*result.getX()+ result.getY()*result.getY());
+          Point inverse = Point(-result.getX(), -result.getY());
 
-        double denominator = std::abs(inverse.getX());
-        if(std::abs(inverse.getX()) < std::abs(inverse.getY())){
-            denominator = std::abs(inverse.getY());
-        }
+          double denominator = std::abs(inverse.getX());
+          if(std::abs(inverse.getX()) < std::abs(inverse.getY())){
+              denominator = std::abs(inverse.getY());
+          }
 
-        if(denominator != 0)
-         inverse = Point(inverse.getX()/denominator, inverse.getY()/denominator);
-        else
-         inverse = Point(0, 0);
+          if(denominator != 0)
+           inverse = Point(inverse.getX()/denominator, inverse.getY()/denominator);
+          else
+           inverse = Point(0, 0);
 
-        m_ball->strike(inverse, norme * 0.1);
-        gestion_haptique->getRessort()->Stop();
+          m_ball->strike(inverse, norme * 0.1);
+          gestion_haptique->getRessort()->Stop();
+
+          clicked = false;
+
+      }
+
 }
 

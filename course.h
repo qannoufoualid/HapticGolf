@@ -47,7 +47,13 @@ public:
      * @return true si le joueur à mis la balle dans le trou.
      */
     bool isPlayerWon();
+
+    /**
+     * @brief Rayon du trou.
+     */
+    static const int TROU_RAYON;
 private:
+
     /**
      * @brief Position du centre du tee.
      */

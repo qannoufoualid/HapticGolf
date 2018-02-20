@@ -70,13 +70,18 @@ private:
     GestionHaptique * gestion_haptique;
 
     /**
+     * True si l'utilisateur a cliqué sur la fenêtre.
+     */
+    bool clicked = false;
+
+    /**
      * @brief Premier point cliqué
      */
     QPoint	mDebut;
     /**
      * @brief 2éme point cliqué
      */
-    Qpoint mFin;
+    QPoint mFin;
     /**
      * @brief Mettre à jour la balle
      */

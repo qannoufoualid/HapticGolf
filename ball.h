@@ -42,7 +42,7 @@ public:
      * @brief Fonction qui permet de gérer les collisions avec les murs d'une course.
      * @param course la course du jeu.
      */
-    void checkCollisions(Course course);
+    bool checkCollisions(Course course);
 
     /**
      * @brief Getter de la position de la balle.
@@ -75,6 +75,12 @@ public:
      * @return true si la balle s'est arrêtée, false sinon.
      */
     bool isStopped();
+
+    /**
+     * @brief Rayon de la balle
+     */
+    static const int RAYON;
+
 private:
     /**
      * @brief Position du centre de la balle.
