@@ -42,11 +42,6 @@ bool Ball::collideWith(Wall wall)
     return false;
 }
 
-void Ball::collideWith(Point hole)
-{
-    //Win
-}
-
 void Ball::strike(Point dir, double velocity)
 {
     m_direction = dir;
@@ -62,9 +57,6 @@ void Ball::updateMovement()
 
 void Ball::checkCollisions(Course course)
 {
-    //if (m_pos.getX() <= (course.getHole().getX() + 10) || m_pos.getY() <= (course.getHole().getY() + 10)){
-    //    collideWith(course.getHole());
-    //} else {
         for (int i = 0; i < course.getWalls().size(); i++) {
             if (collideWith(course.getWalls()[i]) && (course.getWalls()[i].getWallType() == TOP || course.getWalls()[i].getWallType() == BOTTOM ) ) {
                 changeDirection(false);
@@ -72,7 +64,6 @@ void Ball::checkCollisions(Course course)
                 changeDirection(true);
             }
         }
-    //}
 }
 
 
